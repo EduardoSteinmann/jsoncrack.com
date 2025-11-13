@@ -5,6 +5,7 @@ import { CodeHighlight } from "@mantine/code-highlight";
 import type { NodeData } from "../../../types/graph";
 import useGraph from "../../editor/views/GraphView/stores/useGraph";
 import useJson from "../../../store/useJson";
+import useFile from "../../../store/useFile";
 import { setValueAtPath } from "../../editor/views/GraphView/lib/setValueAtPath";
 
 // return object from json removing array and object fields
@@ -106,6 +107,12 @@ export const NodeModal = ({ opened, onClose }: ModalProps) => {
 
       const updated = setValueAtPath(prevJson, nodeData?.path, valueToSet);
       setJson(updated);
+      // Update left editor contents immediately so users see changes
+      try {
+        useFile.getState().setContents({ contents: updated, hasChanges: false, skipUpdate: true });
+      } catch (e) {
+        // ignore
+      }
       // After updating the global JSON the graph is re-parsed; ensure the
       // selected node in the graph store points to the newly parsed node so
       // the modal content updates to reflect saved changes.
