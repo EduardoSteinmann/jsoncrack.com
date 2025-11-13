@@ -5,6 +5,7 @@ import useConfig from "../../../../../store/useConfig";
 import { isContentImage } from "../lib/utils/calculateNodeSize";
 import { TextRenderer } from "./TextRenderer";
 import * as Styled from "./styles";
+// inline editing removed — modal handles edits now
 
 const StyledTextNodeWrapper = styled.span<{ $isParent: boolean }>`
   display: flex;

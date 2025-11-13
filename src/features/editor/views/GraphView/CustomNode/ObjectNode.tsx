@@ -4,6 +4,7 @@ import { NODE_DIMENSIONS } from "../../../../../constants/graph";
 import type { NodeData } from "../../../../../types/graph";
 import { TextRenderer } from "./TextRenderer";
 import * as Styled from "./styles";
+// Editing moved to modal — keep node rendering lightweight
 
 type RowProps = {
   row: NodeData["text"][number];
